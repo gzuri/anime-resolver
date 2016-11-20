@@ -55,7 +55,8 @@ public class AnidbService {
                     Node childNode = childNodes.item(j);
                     if (childNode.getAttributes().getNamedItem("lang").getNodeValue().equals("en")
                             && (childNode.getAttributes().getNamedItem("type").getNodeValue().equals("official")
-                            || childNode.getAttributes().getNamedItem("type").getNodeValue().equals("main"))){
+                            || childNode.getAttributes().getNamedItem("type").getNodeValue().equals("main")
+                            || childNode.getAttributes().getNamedItem("type").getNodeValue().equals("syn"))){
 
                         Integer aid = Integer.parseInt(node.getAttributes().getNamedItem("aid").getNodeValue());
 

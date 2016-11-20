@@ -15,6 +15,9 @@ public class Main {
             System.out.println( animeHandler.getAnimeId(args[0]));
         }catch (AnimeNotFoundException ex){
             System.out.println("Anime not found");
+        }catch (Exception ex){
+            System.out.println("Uuuuups something went wrong!");
         }
+
     }
 }
