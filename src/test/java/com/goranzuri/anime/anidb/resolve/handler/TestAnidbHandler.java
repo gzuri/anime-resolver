@@ -12,7 +12,7 @@ public class TestAnidbHandler {
     public void testCleanTitleRemoveWhitespaceAndMinus(){
         String animeTitle = "Ai Yori Aoshi - Enishi";
 
-        animeTitle = AnimeHandler.cleanTitle(animeTitle);
+        animeTitle = AnimeHandler.prepareTitleForComparation(animeTitle);
 
         Assert.assertTrue(!animeTitle.contains(" "));
         Assert.assertTrue(!animeTitle.contains("-"));

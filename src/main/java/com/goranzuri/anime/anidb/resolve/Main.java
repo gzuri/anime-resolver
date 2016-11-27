@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         AnimeHandler animeHandler = new AnimeHandler(new AnidbService());
         try{
-            System.out.println( animeHandler.getAnimeId(args[0]));
+            System.out.println( animeHandler.getAnidbCode(args[0]));
         }catch (AnimeNotFoundException ex){
             System.out.println("Anime not found");
         }catch (Exception ex){
