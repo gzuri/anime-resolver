@@ -18,7 +18,7 @@ public class AnimeHandler {
         this.anidbService = anidbService;
     }
 
-
+    //TODO move to AnidbService
     public static String prepareStringForComparison(String animeTitle){
         animeTitle = animeTitle.replaceAll("[-+.^:,_ ]","");
         animeTitle = animeTitle.toLowerCase();
@@ -26,6 +26,7 @@ public class AnimeHandler {
         return animeTitle;
     }
 
+    //TODO move to AnidbService
     public static Map<String, Integer> prepareListOfTitlesForComparation(Map<String, Integer> animeList){
         Map<String, Integer> cleanedAnimeList = new HashMap<String, Integer>();
         for (Map.Entry<String, Integer> item : animeList.entrySet()){
@@ -33,7 +34,7 @@ public class AnimeHandler {
         }
         return  cleanedAnimeList;
     }
-
+    //TODO move to AnidbService
     public Integer getAnidbCode(String animeName) throws AnimeNotFoundException {
         try {
             Map<String, Integer> animeTitlesWithId = prepareListOfTitlesForComparation(anidbService.getAnimeCandidates(animeName));
@@ -50,11 +51,11 @@ public class AnimeHandler {
         throw  new AnimeNotFoundException();
     }
 
+    //TODO move to AnidbService
     public Integer getAniDbCodeIfMatched(String animeName){
         try{
             return getAnidbCode(animeName);
         } catch (AnimeNotFoundException e) {
-            e.printStackTrace();
         }
         return null;
     }
