@@ -25,4 +25,8 @@ public class PropertiesHandler {
         }
         return  properties.getProperty(propertyName);
     }
+
+    public static Integer getPropertyInt(String propertyName){
+        return Integer.parseInt(getProperty(propertyName));
+    }
 }

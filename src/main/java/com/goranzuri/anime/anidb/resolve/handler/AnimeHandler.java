@@ -19,7 +19,7 @@ public class AnimeHandler {
     }
 
 
-    public static String prepareTitleForComparation(String animeTitle){
+    public static String prepareStringForComparison(String animeTitle){
         animeTitle = animeTitle.replaceAll("[-+.^:,_ ]","");
         animeTitle = animeTitle.toLowerCase();
 
@@ -29,9 +29,8 @@ public class AnimeHandler {
     public static Map<String, Integer> prepareListOfTitlesForComparation(Map<String, Integer> animeList){
         Map<String, Integer> cleanedAnimeList = new HashMap<String, Integer>();
         for (Map.Entry<String, Integer> item : animeList.entrySet()){
-            cleanedAnimeList.put(prepareTitleForComparation(item.getKey()), item.getValue());
+            cleanedAnimeList.put(prepareStringForComparison(item.getKey()), item.getValue());
         }
-
         return  cleanedAnimeList;
     }
 
@@ -39,7 +38,7 @@ public class AnimeHandler {
         try {
             Map<String, Integer> animeTitlesWithId = prepareListOfTitlesForComparation(anidbService.getAnimeCandidates(animeName));
 
-            animeName = prepareTitleForComparation(animeName);
+            animeName = prepareStringForComparison(animeName);
 
             if (animeTitlesWithId.containsKey(animeName))
                 return animeTitlesWithId.get(animeName);
@@ -51,10 +50,26 @@ public class AnimeHandler {
         throw  new AnimeNotFoundException();
     }
 
+    public Integer getAniDbCodeIfMatched(String animeName){
+        try{
+            return getAnidbCode(animeName);
+        } catch (AnimeNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void processAnimeWithoutAbideCode() throws SQLException {
         AnimeDao animeDao = new AnimeDao();
         List<Anime> animeList = animeDao.getAnimeWithoutAnidb();
 
+        for (Anime animeItem: animeList) {
+            Integer anidb_code = getAniDbCodeIfMatched(animeItem.getName());
+            if (anidb_code != null){
+                animeItem.setAnidbCode(anidb_code.toString());
+                animeDao.setAnidb(animeItem);
+            }
+        }
     }
 
 

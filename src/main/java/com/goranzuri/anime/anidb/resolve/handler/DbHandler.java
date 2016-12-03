@@ -19,7 +19,7 @@ public class DbHandler {
             d.setPassword(PropertiesHandler.getProperty("com.goranzuri.anime.anidb.resolve.db.password"));
             d.setServerName(PropertiesHandler.getProperty("com.goranzuri.anime.anidb.resolve.db.host"));
             d.setDatabaseName(PropertiesHandler.getProperty("com.goranzuri.anime.anidb.resolve.db.name"));
-            d.setPort(Integer.getInteger(PropertiesHandler.getProperty("com.goranzuri.anime.anidb.resolve.db.port")));
+            d.setPort(PropertiesHandler.getPropertyInt("com.goranzuri.anime.anidb.resolve.db.port"));
 
             dataSource = d;
         }
