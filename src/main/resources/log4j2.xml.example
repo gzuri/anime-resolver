@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="anime-resolver" packages="">
+    <Appenders>
+        <Syslog name="SYSLOG-TCP" host="xxx.papertrailapp.com" port="xxxxx"
+                protocol="TCP" appName="anime-resolver" mdcId="mdc"
+                facility="LOCAL0" enterpriseNumber="18060" newLine="true"
+                format="RFC5424" ignoreExceptions="false" exceptionPattern="%throwable{full}">
+        </Syslog>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="SYSLOG-TCP"/>
+        </Root>
+    </Loggers>
+</Configuration>
